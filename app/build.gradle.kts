@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("kapt")
 }
 
 android {
@@ -50,7 +51,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -59,7 +59,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.palette.ktx)
+    implementation(libs.androidx.runtime.livedata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -69,29 +69,24 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Retrofit for API requests
-
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
     // ViewModel and LiveData for MVVM architecture
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.livedata)
+    implementation(libs.androidx.lifecycle.runtime.compose)
 
-    implementation (libs.androidx.lifecycle.viewmodel.compose)
-    implementation (libs.androidx.lifecycle.livedata)
-    implementation (libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.coil.compose)
 
-    implementation (libs.coil.compose)
+    implementation(libs.kotlinx.coroutines.android)
 
-    implementation (libs.kotlinx.coroutines.android)
-
-    implementation (libs.hilt.android)
-
-    implementation (libs.timber)
-
-    implementation(libs.androidx.navigation.compose)
 
     // Navigation Compose
-    implementation (libs.androidx.navigation.compose.v276)
+    implementation(libs.androidx.navigation.compose)
+}
 
-// Hilt Navigation Compose
-    implementation (libs.androidx.hilt.navigation.compose)
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

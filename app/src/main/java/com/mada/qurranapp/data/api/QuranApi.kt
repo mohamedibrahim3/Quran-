@@ -7,5 +7,5 @@ import retrofit2.http.GET
 
 interface QuranApi {
     @GET("chapters")
-    suspend fun getChapters(): Response<QuranResponse>
+    suspend fun getChapters(): QuranResponse
 }
